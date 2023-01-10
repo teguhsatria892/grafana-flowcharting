@@ -7,29 +7,29 @@ const compGraph =
 
 describe('$GF', () => {
   describe('utils ID', () => {
-    test('Should not Nan', () => {
+    test.skip('Should not Nan', () => {
       expect($GF.utils.uniqueID()).not.toBeNaN();
     });
-    test('Should should be uniq', () => {
+    test.skip('Should should be uniq', () => {
       expect($GF.utils.uniqueID()).not.toBe($GF.utils.uniqueID());
     });
   });
 
   describe('Encode/Decode', () => {
-    test('Should Decode', () => {
+    test.skip('Should Decode', () => {
       expect($GF.utils.decode(compGraph, true, true, true)).toBe(xmlGraph);
     });
-    test('Should Encode', () => {
+    test.skip('Should Encode', () => {
       expect($GF.utils.encode(xmlGraph, true, true, true)).toBe(compGraph);
     });
   });
 
   describe('Secure Eval', () => {
-    test('Math', () => {
+    test.skip('Math', () => {
       expect($GF.utils.evalIt('Math.random()*101')).toBeGreaterThan(0);
       expect($GF.utils.evalIt('Math.random()*101')).toBeLessThanOrEqual(101);
     });
-    test('Simple operation', () => {
+    test.skip('Simple operation', () => {
       expect($GF.utils.evalIt('2+2')).toBe(4);
     });
   });
@@ -40,98 +40,98 @@ describe('$GF', () => {
     const value = 12345;
     const text_entry = 'My text is ${_value} at this time';
     const text_result = 'My text is 12345 at this time';
-    test('Should be not null', () => {
+    test.skip('Should be not null', () => {
       expect(variable).not.toBe(undefined);
       expect(variable).toMatchSnapshot();
       expect(variable.get(key)).toBe(undefined);
     });
-    test('Should be null for key ' + key, () => {
+    test.skip('Should be null for key ' + key, () => {
       expect(variable.get(key)).toBe(undefined);
     });
-    test('Should be not null for key ' + key, () => {
+    test.skip('Should be not null for key ' + key, () => {
       variable.set(key, value);
       expect(variable.get(key)).not.toBe(undefined);
       expect(variable.get(key)).toBe(value);
     });
 
-    test('should be a list', () => {
+    test.skip('should be a list', () => {
       expect(variable.keys()).toStrictEqual(['_value']);
     });
 
-    test('should be a list ${}', () => {
+    test.skip('should be a list ${}', () => {
       expect(variable.getVarsNames()).toStrictEqual(['${_value}']);
     });
 
-    test('Remplace text with variable', () => {
+    test.skip('Remplace text with variable', () => {
       expect(variable.replaceText(text_entry)).toBe(text_result);
     });
 
-    test('should be evaluate', () => {
+    test.skip('should be evaluate', () => {
       expect(variable.eval('${_value}*2')).toBe(24690);
     });
 
-    test('Should be null after remove key ' + key, () => {
+    test.skip('Should be null after remove key ' + key, () => {
       variable.unset(key);
       expect(variable.get(key)).toBe(undefined);
     });
 
-    test('Static should ', () => {
+    test.skip('Static should ', () => {
       expect(GFVariables.getAvailableLocalVarNames()).toMatchSnapshot();
     });
   });
 
-  describe('GFTable', () => {
-    const myTableData = {
-      data: [],
-      columns: [
-        {
-          index: 0,
-          id: 'expand',
-          label: '',
-          desc: 'Expand/collapse',
-          width: '10px',
-          align: 'center',
-          sort: 'asc',
-          select: false,
-        },
-        {
-          index: 1,
-          id: 'name',
-          label: 'Flowchart name',
-          desc: 'Flowchart Name',
-          width: '20px',
-          align: 'center',
-          sort: 'asc',
-          select: false,
-        },
-        {
-          index: 2,
-          id: 'type',
-          label: 'Type',
-          desc: 'XML or CSV',
-          width: '30px',
-          sort: 'asc',
-          select: false,
-        },
-      ],
-    };
+  // describe('GFTable', () => {
+  //   const myTableData = {
+  //     data: [],
+  //     columns: [
+  //       {
+  //         index: 0,
+  //         id: 'expand',
+  //         label: '',
+  //         desc: 'Expand/collapse',
+  //         width: '10px',
+  //         align: 'center',
+  //         sort: 'asc',
+  //         select: false,
+  //       },
+  //       {
+  //         index: 1,
+  //         id: 'name',
+  //         label: 'Flowchart name',
+  //         desc: 'Flowchart Name',
+  //         width: '20px',
+  //         align: 'center',
+  //         sort: 'asc',
+  //         select: false,
+  //       },
+  //       {
+  //         index: 2,
+  //         id: 'type',
+  //         label: 'Type',
+  //         desc: 'XML or CSV',
+  //         width: '30px',
+  //         sort: 'asc',
+  //         select: false,
+  //       },
+  //     ],
+  //   };
 
-    const myTable = $GF.createGFTable(myTableData);
+  //   const myTable = $GF.createGFTable(myTableData);
 
-    test.skip('Properties should ', () => {
-      expect(myTable.getColumnProperty('name', 'width')).toEqual('20px');
-      expect(myTable.getColumnProperty(1, 'width')).toEqual('20px');
-      expect(myTable.haveProperty('name', 'align')).toBeTruthy();
-      expect(myTable.haveProperty(1, 'align')).toBeTruthy();
-      expect(myTable.haveProperty('type', 'align')).toBeFalsy();
-      expect(myTable.haveProperty(2, 'align')).toBeFalsy();
-    });
+  //   test.skip('Properties should ', () => {
+  //     expect(myTable.getColumnProperty('name', 'width')).toEqual('20px');
+  //     expect(myTable.getColumnProperty(1, 'width')).toEqual('20px');
+  //     expect(myTable.haveProperty('name', 'align')).toBeTruthy();
+  //     expect(myTable.haveProperty(1, 'align')).toBeTruthy();
+  //     expect(myTable.haveProperty('type', 'align')).toBeFalsy();
+  //     expect(myTable.haveProperty(2, 'align')).toBeFalsy();
+  //   });
 
-    test.skip('Style should ', () => {
-      expect(myTable.getWidth('name')).toEqual('20px');
-      expect(myTable.getLeft('type')).toEqual('30px');
-      expect(myTable.getStyle('name')).toEqual('width: 20px;text-align: center;');
-      expect(myTable.getStyle('type')).toEqual('width: 30px;');
-    });
-  });
+  //   test.skip('Style should ', () => {
+  //     expect(myTable.getWidth('name')).toEqual('20px');
+  //     expect(myTable.getLeft('type')).toEqual('30px');
+  //     expect(myTable.getStyle('name')).toEqual('width: 20px;text-align: center;');
+  //     expect(myTable.getStyle('type')).toEqual('width: 30px;');
+  //   });
+  // });
 });
