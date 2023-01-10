@@ -8,6 +8,7 @@
 /coverage
 /archives
 /dist
+/built
 
 yarn-error.log
 key.txt
