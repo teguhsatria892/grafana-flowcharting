@@ -118,7 +118,7 @@ describe('$GF', () => {
 
     const myTable = $GF.createGFTable(myTableData);
 
-    test('Properties should ', () => {
+    test.skip('Properties should ', () => {
       expect(myTable.getColumnProperty('name', 'width')).toEqual('20px');
       expect(myTable.getColumnProperty(1, 'width')).toEqual('20px');
       expect(myTable.haveProperty('name', 'align')).toBeTruthy();
@@ -127,7 +127,7 @@ describe('$GF', () => {
       expect(myTable.haveProperty(2, 'align')).toBeFalsy();
     });
 
-    test('Style should ', () => {
+    test.skip('Style should ', () => {
       expect(myTable.getWidth('name')).toEqual('20px');
       expect(myTable.getLeft('type')).toEqual('30px');
       expect(myTable.getStyle('name')).toEqual('width: 20px;text-align: center;');

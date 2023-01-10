@@ -8,8 +8,9 @@
     "test": "grafana-toolkit plugin:test",
     "dev": "grafana-toolkit plugin:dev",
     "watch": "grafana-toolkit plugin:dev --watch",
-    "archive": "./node_modules/.bin/grunt archive",
-    "init": "./node_module/.bin/grunt init"
+    "archive": "gulp package",
+    "clean": "gulp clean",
+    "sign": "grafana-toolkit plugin:sign"
   },
   "repository": {
     "type": "git",
@@ -55,6 +56,12 @@
     "eslint-plugin-prettier": "^3.1.2",
     "express": "^4.16.4",
     "grafana-sdk-mocks": "grafana/grafana-sdk-mocks",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-json-editor": "^2.5.6",
+    "gulp-notify": "^4.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-zip": "^5.1.0",
     "grunt": "^1.3.0",
     "grunt-cli": "^1.3.2",
     "grunt-contrib-clean": "^2.0.0",
@@ -71,7 +78,9 @@
     "mxgraph-type-definitions": "^1.0.1",
     "safe-eval": "^0.4.1",
     "ts-jest": "^26.4.4",
-    "vkbeautify": "^0.99.3"
+    "vkbeautify": "^0.99.3",
+    "build-number-generator": "^1.0.0",
+    "del": "^6.0.0"
   },
   "dependencies": {
     "@babel/core": "^7.7.2",
