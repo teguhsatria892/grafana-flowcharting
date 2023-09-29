@@ -380,6 +380,7 @@ declare module gf {
     textPattern: string;
     textOn: TTextOnKeys;
     textCustom: string;
+    textIndex: number;
   }
 
   declare interface TlinkMapData extends TDefObjMapData {

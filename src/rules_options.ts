@@ -38,6 +38,7 @@ export class RulesOptionsCtrl {
   tpDirection: gf.TSelectString[] = GFCONSTANT.TOOLTIP_DIRECTION_TYPES;
   propTypes: gf.TSelectString[] = GFCONSTANT.IDENT_TYPES;
   textPattern = '/.*/';
+  textIndex = -1;
   rulesTableData: gf.TTableData;
   shapesTableData: gf.TTableData;
   textsTableData: gf.TTableData;

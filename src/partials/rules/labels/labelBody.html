@@ -77,3 +77,18 @@
         dropdown-typeahead-on-select="editor.setCustomUnit(text, $subItem)">
     </div>
 </div>
+<div class="gf-form" ng-if="text.method == 'pattern' && text.condition != 'n'">
+    <label class="gf-form-label width-10" style="margin-right: 2px;">Indexing
+        <info-popover mode="right-normal">
+            <span
+                ng-bind-html="$GF.popover('Enter pattern/regular expression (Only for substring method)', 'TEXTS','example_text_pattern')">
+            </span>
+        </info-popover>
+    </label>
+    <input
+        type="number"
+        class="gf-form-input width-8"
+        ng-model="text.indexToText"
+        ng-model-onblur
+        placeholder="Text or pattern to replace by metric value" />
+</div>

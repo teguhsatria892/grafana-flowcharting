@@ -491,6 +491,17 @@ export class TextMap extends GFMap<gf.TTextMapData> {
     return this.data.textPattern;
   }
 
+  set indexToText(v: number) {
+    if (!v || v === this.data.textIndex) {
+      return;
+    }
+    this.data.textIndex = v;
+    this.change();
+  }
+  get indexToText(): number {
+    return this.data.textIndex;
+  }
+
   set customUnit(v: any) {
     if (!v || v.length === 0 || v === this.data.textCustom) {
       return;
@@ -522,6 +533,7 @@ export class TextMap extends GFMap<gf.TTextMapData> {
       textPattern: '/.*/',
       textOn: 'wmd',
       textCustom: '',
+      textIndex: -1,
     };
   }
 
@@ -571,6 +583,9 @@ export class TextMap extends GFMap<gf.TTextMapData> {
     if(!!obj.textCustom) {
       this.data.textCustom = obj.textCustom;
     }
+    if (!!obj.textIndex) {
+      this.data.textIndex = obj.textIndex;
+    }
 
     return this;
   }
@@ -583,12 +598,12 @@ export class TextMap extends GFMap<gf.TTextMapData> {
    * @returns
    * @memberof Rule
    */
-  getReplaceText(text: string, FormattedValue: string): string {
+  getReplaceText(text: string, FormattedValue: string, textPattern: any | undefined): string {
     if (this.data.textReplace === 'content') {
       return FormattedValue;
     }
     if (this.data.textReplace === 'pattern') {
-      const regexVal = $GF.stringToRegEx(this.data.textPattern);
+      const regexVal = $GF.stringToRegEx(textPattern);
       if (regexVal && text.toString().match(regexVal)) {
         return text.toString().replace(regexVal, FormattedValue);
       }
